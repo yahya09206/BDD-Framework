@@ -5,17 +5,17 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class NavigationCaseTwo {
+public class NavigationCase_03 {
 
     public static void main(String[] args) {
 
         /*
-         * Test Case 2: Get Current URL
-         * Objective: Verify getCurrentUrl() returns the correct URL
+         * Test Case 3: Navigate Back
+         * Objective: Verify navigate().back() works correctly
          * Navigate to https://www.tesla.com
-         * Store the current URL
-         * Verify the stored URL matches the navigated URL
-         * Verify the URL is not null and not empty
+         * Navigate to https://www.google.com
+         * Call navigate().back()
+         * Verify you're back on Tesla URL (contains "tesla")
          */
 
         WebDriverManager.chromedriver().setup();
@@ -23,11 +23,12 @@ public class NavigationCaseTwo {
 
         driver.get("https://www.saucedemo.com");
 
-        String currentUrl = "https://www.saucedemo.com/";
+        driver.get("https://www.google.com");
 
-        Assertions.assertEquals(currentUrl, driver.getCurrentUrl());
+        driver.navigate().back();
+
+        Assertions.assertTrue(driver.getTitle().contains("Swag"));
 
         driver.quit();
-
     }
 }
